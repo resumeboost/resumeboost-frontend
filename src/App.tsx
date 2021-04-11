@@ -31,7 +31,6 @@ const App: React.FC = () => {
       <Router>
         {/* Landing Page */}
         <Route
-          exact
           path="/landing"
           render={() => (
             <LoggedOutRoute>

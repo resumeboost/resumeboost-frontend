@@ -7,7 +7,7 @@ import Layout from "./Layout";
 const LoggedInRoute: React.FC = ({ children }) => {
   const { user } = useContext(UserContext);
 
-  return user ? <Layout>{children}</Layout> : <Redirect to="/login" />;
+  return user ? <Layout>{children}</Layout> : <Redirect to="/landing" />;
 };
 
 export default LoggedInRoute;
