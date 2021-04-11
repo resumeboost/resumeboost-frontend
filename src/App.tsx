@@ -15,6 +15,7 @@ import Dashboard from "./pages/Dashboard";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import { UserProfile } from "./pages/UserProfile";
+import Landing from "./pages/Landing";
 import api from "./utils/api";
 import { ABTesting } from "./pages/ABTesting";
 
@@ -31,10 +32,10 @@ const App: React.FC = () => {
         {/* Landing Page */}
         <Route
           exact
-          path="/"
+          path="/landing"
           render={() => (
             <LoggedOutRoute>
-              <Redirect to="/dashboard" />
+              <Landing />
             </LoggedOutRoute>
           )}
         />
