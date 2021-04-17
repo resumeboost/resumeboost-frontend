@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-
+import React, { useContext, useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import { AddTargetEntry } from "../components/AddTargetEntry";
 import Header from "../components/Header";
 import PDFModal from "../components/PDFModal";
@@ -23,6 +23,26 @@ const testList = [
 export const UserProfile: React.FC = () => {
   const { user, setUser } = useContext(UserContext);
   const [selectedFile, setSelectedFile] = useState();
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else if (user) {
+      console.log("Updating User");
+      api
+        .updateUserPreferences(user._id, {
+          targetCompanies: user.targetCompanies,
+          targetPositions: user.targetPositions,
+        })
+        .then(() => toast.success("Successfully updated user preferences"))
+        .catch(() =>
+          toast.error(
+            "Error while updating preferences. Please refresh the page and try again"
+          )
+        );
+    }
+  }, [user]);
 
   const onFileChange = (event: any) => {
     // Update the state
@@ -39,7 +59,13 @@ export const UserProfile: React.FC = () => {
       // @ts-ignore
       formData.append("resume", selectedFile, selectedFile.name);
 
-      api.uploadResume(user._id, formData);
+      // TODO: Add updated resume to local state
+      api
+        .uploadResume(user._id, formData)
+        .then(() => toast.success("Successfully uploaded resume"))
+        .catch((err) =>
+          toast.error("Error while uploading resume, please try again")
+        );
     }
   };
 
@@ -93,6 +119,10 @@ export const UserProfile: React.FC = () => {
             <div className="px-4 py-4 text-2xl font-bold">
               {/* TODO: get real user name */}
               FirstName LastName
+            </div>
+            <div className="px-4 pb-6 text-xl">
+              {/* TODO: get real user name */}
+              {user?.email}
             </div>
             <div className="px-4 pb-4 text-xl">My Resumes:</div>
             <PDFModal />

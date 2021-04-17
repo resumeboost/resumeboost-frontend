@@ -1,15 +1,10 @@
 import { Review } from "./Review";
+import { Resume } from "./Resume";
 
 interface Employer {
   industries: string[];
   name: string;
   logo: string;
-}
-
-interface Resume {
-  _id: string;
-  isActive: true;
-  link: string;
 }
 
 export default interface User {

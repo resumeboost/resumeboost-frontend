@@ -26,7 +26,8 @@ export default function Modal() {
                 </div>
                 {/* body */}
                 <div className="relative flex-auto">
-                  <PDFView />
+                  {/* TODO: Replace with actual resume */}
+                  <PDFView resumeLink="04e6b936-d6a6-433a-9400-307d5ee49fd3.pdf" />
                 </div>
                 {/* footer */}
                 <div className="flex items-center justify-between p-2 border-t border-solid border-blueGray-200 rounded-b">

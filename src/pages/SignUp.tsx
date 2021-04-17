@@ -3,11 +3,11 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { Button, Input, Label } from "@windmill/react-ui";
-
+import toast from "react-hot-toast";
 import UserContext from "../context/UserContext";
 import api from "../utils/api";
 import background from "./SignUp.png";
-import image from "./SignUpImage.png";
+import image from "../assets/SignUpImage.png";
 
 const SignUp: React.FC = () => {
   const { setUser } = useContext(UserContext);
@@ -19,7 +19,10 @@ const SignUp: React.FC = () => {
       password: "",
     },
     onSubmit: async (values) => {
-      api.signup(values).then((user) => setUser(user));
+      api
+        .signup(values)
+        .then((user) => setUser(user))
+        .catch((err) => toast.error("Email already exists. Please login."));
     },
   });
 

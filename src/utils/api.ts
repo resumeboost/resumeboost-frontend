@@ -1,7 +1,10 @@
+import { UpdatePreferencesDto } from "../interfaces/UpdatePreferencesDto";
 import { Credentials } from "../interfaces/Credentials";
 import { Review } from "../interfaces/Review";
 import User from "../interfaces/User";
 import axios from "axios";
+import { Reviewee } from "../interfaces/Reviewee";
+import { PostReviewDto } from "../interfaces/PostReviewDto";
 
 const testUser = {
   _id: "123",
@@ -67,16 +70,39 @@ const logout = async () => {
   window.location.replace("/");
 };
 
-const getResumeFile = async (filename: string): Promise<string> => {
+const getResumeFile = async (filename: string): Promise<Uint8Array> => {
   return axios
     .get(`${URL}/user/resume/${filename}`, {
+      withCredentials: true,
+    })
+    .then((res) => res.data.data);
+};
+
+const uploadResume = async (userId: string, formData: FormData) => {
+  await axios.post(`${URL}/user/${userId}/resume`, formData, {
+    withCredentials: true,
+  });
+};
+
+const updateUserPreferences = async (
+  userId: string,
+  preferences: UpdatePreferencesDto
+) => {
+  await axios.post(`${URL}/user/update/${userId}`, preferences, {
+    withCredentials: true,
+  });
+};
+
+const getNextUserToReview = async (): Promise<Reviewee> => {
+  return axios
+    .get(`${URL}/user/review/next`, {
       withCredentials: true,
     })
     .then((res) => res.data);
 };
 
-const uploadResume = async (userId: string, formData: FormData) => {
-  await axios.post(`${URL}/user/${userId}/resume`, formData, {
+const postReview = async (reviewData: PostReviewDto) => {
+  await axios.post(`${URL}/review/postReview`, reviewData, {
     withCredentials: true,
   });
 };
@@ -89,4 +115,7 @@ export default {
   getAllReviews,
   getResumeFile,
   uploadResume,
+  updateUserPreferences,
+  getNextUserToReview,
+  postReview,
 };

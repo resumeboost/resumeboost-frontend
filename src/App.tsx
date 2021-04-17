@@ -1,7 +1,8 @@
 import "./App.css";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Redirect, Route, BrowserRouter as Router } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import Dashboard from "./pages/Dashboard";
 import Feedback from "./components/Feedback";
@@ -21,22 +22,16 @@ import api from "./utils/api";
 const App: React.FC = () => {
   const [user, setUser] = useState<User>();
   const [reviews, setReviews] = useState<Review[]>();
-  const [resumeFile, setResumeFile] = useState<string>();
-
-  useEffect(() => {
-    if (user) {
-      console.log("Updated user");
-    }
-  }, [user]);
+  // const [resumeFile, setResumeFile] = useState<string>();
 
   useEffect(() => {
     api.getLoggedInUser().then((currentUser) => setUser(currentUser));
   }, []);
 
   return (
-    <UserContext.Provider
-      value={{ user, setUser, reviews, setReviews, resumeFile, setResumeFile }}
-    >
+    <UserContext.Provider value={{ user, setUser, reviews, setReviews }}>
+      <Toaster />
+
       <Router>
         {/* Landing Page */}
         <Route

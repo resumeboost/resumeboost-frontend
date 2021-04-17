@@ -7,6 +7,19 @@ import ScoreCard from "../components/DashboardScoreCard";
 import UserContext from "../context/UserContext";
 import api from "../utils/api";
 import utils from "../utils/utils";
+import User from "../interfaces/User";
+
+const getActiveResumeLink = (user: User): string | undefined => {
+  if (user) {
+    const activeResumes = user?.resumes.filter((item) => item.isActive);
+
+    if (activeResumes.length > 0) {
+      return activeResumes[0].link;
+    }
+  }
+
+  return undefined;
+};
 
 const Dashboard: React.FC = () => {
   const { user, setReviews, reviews } = useContext(UserContext);
@@ -45,7 +58,7 @@ const Dashboard: React.FC = () => {
         </div>
         <div className="max-w-1/2 rounded-lg shadow-lg">
           {/* Resume Placeholder */}
-          <PDFView />
+          <PDFView resumeLink={getActiveResumeLink(user)} />
         </div>
       </div>
     </div>

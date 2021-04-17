@@ -7,8 +7,8 @@ interface IUserContext {
   setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
   reviews: Review[] | undefined;
   setReviews: React.Dispatch<React.SetStateAction<Review[] | undefined>>;
-  resumeFile: string | undefined;
-  setResumeFile: React.Dispatch<React.SetStateAction<string | undefined>>;
+  // resumeFile: string | undefined;
+  // setResumeFile: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const UserContext = createContext<IUserContext>({
@@ -16,8 +16,8 @@ const UserContext = createContext<IUserContext>({
   setUser: () => {},
   reviews: undefined,
   setReviews: () => {},
-  resumeFile: undefined,
-  setResumeFile: () => {},
+  // resumeFile: undefined,
+  // setResumeFile: () => {},
 });
 
 export default UserContext;
