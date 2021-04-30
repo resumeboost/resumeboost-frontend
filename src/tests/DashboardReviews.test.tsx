@@ -16,7 +16,7 @@ describe("DashboardReviews", () => {
   });
 
   it("renders reviews in table", () => {
-    const { getByTestId, debug } = render(
+    const { getByTestId } = render(
       <UserContext.Provider
         value={{
           user: {
@@ -38,8 +38,8 @@ describe("DashboardReviews", () => {
             ],
           },
           setUser: jest.fn(),
-          resumeFile: "",
-          setResumeFile: jest.fn(),
+          // resumeFile: "",
+          // setResumeFile: jest.fn(),
           reviews: [],
           setReviews: jest.fn(),
         }}
