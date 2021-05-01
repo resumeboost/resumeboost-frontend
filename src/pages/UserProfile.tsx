@@ -8,18 +8,6 @@ import UserContext from "../context/UserContext";
 import api from "../utils/api";
 import { useFormik } from "formik";
 
-const testList = [
-  {
-    name: "testName1",
-  },
-  {
-    name: "testName2",
-  },
-  {
-    name: "testName3",
-  },
-];
-
 export const UserProfile: React.FC = () => {
   const { user, setUser } = useContext(UserContext);
   const [selectedFile, setSelectedFile] = useState();
@@ -130,6 +118,7 @@ export const UserProfile: React.FC = () => {
               {/* TODO: Upload resume functionality */}
               <input type="file" onChange={onFileChange} />
               <button
+                id="#submit-resume"
                 type="button"
                 className="px-8 p-4 border rounded-full bg-purple-800 text-white font-semibold text-sm"
                 onClick={onFileUpload}

@@ -42,7 +42,7 @@
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "prepare": "husky install",
-    "postinstall": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks",
+    "postinstall": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks && npx nyc instrument --compact=false src instrumented",
     "cy:open": "cypress open",
     "cy:run": "cypress run"
   },
@@ -51,6 +51,9 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "nyc": {
+    "exclude": ["**/reportWebVitals.ts"]
   },
   "browserslist": {
     "production": [
@@ -78,6 +81,8 @@
     "@typescript-eslint/parser": "^4.19.0",
     "autoprefixer": "^9.8.6",
     "cypress": "^7.2.0",
+    "cypress-file-upload": "^5.0.6",
+    "cypress-wait-until": "^1.7.1",
     "eslint": "^7.22.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^12.3.1",

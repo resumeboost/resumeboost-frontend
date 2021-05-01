@@ -10,8 +10,8 @@ const testUser: User = {
   _id: "123",
   email: "email@gmail.com",
   points: 10,
-  targetCompanies: [],
-  targetPositions: [],
+  targetCompanies: ["Company1", "Company2"],
+  targetPositions: ["Position1", "Position2"],
   resumes: [],
 };
 
@@ -20,7 +20,7 @@ const URL = "http://localhost:8000";
 const getLoggedInUser = async (): Promise<User | undefined> => {
   // return undefined;
 
-  return testUser;
+  // return testUser;
   return axios
     .get(`${URL}/user/profile`, { withCredentials: true })
     .then((res) => res.data);

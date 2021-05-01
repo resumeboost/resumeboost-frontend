@@ -29,18 +29,21 @@ const Navbar: React.FC = () => {
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link
+                  id="#dashboard-navbar"
                   to="/dashboard"
                   className="bg-purple-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Dashboard
                 </Link>
                 <Link
+                  id="#review-navbar"
                   to="/review"
                   className="text-gray-300 hover:bg-purple-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Review
                 </Link>
                 <Link
+                  id="#profile-navbar"
                   to="/profile"
                   className="text-gray-300 hover:bg-purple-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
@@ -78,12 +81,15 @@ const Navbar: React.FC = () => {
                     onClose={() => {}}
                   >
                     <Link to="/profile">
-                      <DropdownItem className="justify-between">
+                      <DropdownItem
+                        id="#profile-dropdown"
+                        className="justify-between"
+                      >
                         <span>Profile</span>
                       </DropdownItem>
                     </Link>
 
-                    <DropdownItem onClick={api.logout}>
+                    <DropdownItem id="#logout-dropdown" onClick={api.logout}>
                       <span>Logout</span>
                     </DropdownItem>
                   </Dropdown>
