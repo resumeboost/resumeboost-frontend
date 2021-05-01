@@ -27,3 +27,4 @@ yarn-error.log*
 instrumented/
 cypress/videos
 cypress/screenshots
+package-lock.json

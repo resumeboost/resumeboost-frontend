@@ -53,7 +53,9 @@
     ]
   },
   "nyc": {
-    "exclude": ["**/reportWebVitals.ts"]
+    "exclude": [
+      "**/reportWebVitals.ts"
+    ]
   },
   "browserslist": {
     "production": [
