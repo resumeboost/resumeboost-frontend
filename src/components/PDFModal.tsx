@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import PDFView from "./PDFview";
 import { Resume } from "../interfaces/Resume";
+import api from "../utils/api";
+import UserContext from "../context/UserContext";
+import toast from "react-hot-toast";
 
 interface Props {
   resume: Resume;
@@ -8,7 +11,27 @@ interface Props {
 }
 
 const Modal: React.FC<Props> = ({ resume, name }) => {
+  const { user, setUser } = useContext(UserContext);
+
   const [showModal, setShowModal] = React.useState(false);
+
+  const deleteResume = async () => {
+    try {
+      if (user) {
+        await api.deleteResume(resume._id);
+        setUser({
+          ...user,
+          resumes: user.resumes.filter((r) => r._id !== resume._id),
+        });
+      }
+      setShowModal(false);
+      toast.success("Successfully deleted resume");
+    } catch (err) {
+      console.log(err);
+      toast.error("Sorry, something went wrong while deleting resume");
+    }
+  };
+
   return (
     <div className="px-4 pb-2">
       <button
@@ -39,7 +62,7 @@ const Modal: React.FC<Props> = ({ resume, name }) => {
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    // onClick={() => setShowModal(false)}
+                    onClick={deleteResume}
                   >
                     Delete Resume
                   </button>

@@ -284,22 +284,19 @@ describe("End-to-end User Flow", () => {
 
     /* ==== Generated with Cypress Studio ==== */
     cy.get(".react-pdf__Page__canvas").should("exist");
-    cy.get(".space-x-6 > :nth-child(1) > .items-center").should(
-      "have.text",
-      "3"
-    );
-    cy.get(".space-x-6 > :nth-child(2) > .items-center").should(
-      "have.text",
-      "3"
-    );
-    cy.get(".space-x-6 > :nth-child(3) > .items-center").should(
-      "have.text",
-      "3"
-    );
+    cy.get("#score-Visual").should("have.text", "3.0");
+    cy.get("#score-Content").should("have.text", "3.0");
+    cy.get("#score-Relevance").should("have.text", "3.0");
     cy.get("[data-testid=comment]").should("have.text", "Great resume");
     cy.get("[data-testid=visual]").should("have.text", "3");
     cy.get("[data-testid=content]").should("have.text", "3");
     cy.get("[data-testid=relevance]").should("have.text", "3");
     /* ==== End Cypress Studio ==== */
+  });
+
+  it("AB Test Page: Can render", () => {
+    cy.visit("/");
+    cy.get("#\\#abtesting-navbar").click();
+    cy.waitUntil(() => cy.location("pathname").should("eq", "/abtesting"));
   });
 });

@@ -111,6 +111,18 @@ const postReview = async (reviewData: PostReviewDto): Promise<void> => {
   });
 };
 
+const deleteResume = async (resumeId: string): Promise<void> => {
+  await axios.delete(`${URL}/user/resume/${resumeId}`, {
+    withCredentials: true,
+  });
+};
+
+const deleteUser = async () => {
+  await axios.delete(`${URL}/user`, {
+    withCredentials: true,
+  });
+};
+
 export default {
   getLoggedInUser,
   login,
@@ -122,4 +134,6 @@ export default {
   updateUserPreferences,
   getNextUserToReview,
   postReview,
+  deleteResume,
+  deleteUser,
 };

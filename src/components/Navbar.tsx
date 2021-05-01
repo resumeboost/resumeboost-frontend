@@ -51,6 +51,7 @@ const Navbar: React.FC = () => {
                   User Profile
                 </Link>
                 <Link
+                  id="#abtesting-navbar"
                   to="/abtesting"
                   className="text-gray-300 hover:bg-purple-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >

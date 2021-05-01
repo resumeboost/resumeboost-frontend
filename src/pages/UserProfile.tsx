@@ -57,8 +57,10 @@ export const UserProfile: React.FC = () => {
     }
   };
 
-  const onDeleteAccount = () => {
-    // TODO:
+  const onDeleteAccount = async () => {
+    await api.deleteUser();
+    setUser(undefined);
+    window.location.replace("/");
   };
 
   const handleAddComp = (name: string) => {
@@ -112,15 +114,12 @@ export const UserProfile: React.FC = () => {
               {/* TODO: get real user name */}
               FirstName LastName
             </div>
-            <div className="px-4 pb-6 text-xl">
-              {/* TODO: get real user name */}
-              {user?.email}
-            </div>
+            <div className="px-4 pb-6 text-xl">{user?.email}</div>
             <div className="px-4 pb-4 text-xl">My Resumes:</div>
             {user?.resumes.map((item, index) => (
               <PDFModal
                 resume={item}
-                name={"testPDF".concat(index.toString())}
+                name={"resume".concat(index.toString())}
               />
             ))}
             <form className="p-4 flex justif-end">

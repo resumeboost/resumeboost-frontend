@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "start:instrument": "craco -r @cypress/instrument-cra start",
+    "start:coverage": "craco -r @cypress/instrument-cra start",
     "build": "craco build",
     "test": "craco test",
     "test:cov": "craco test --coverage --watchAll=false",
