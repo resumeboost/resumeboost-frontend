@@ -21,3 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.nyc_output/
+
+instrumented/
+cypress/videos
+cypress/screenshots
+package-lock.json
