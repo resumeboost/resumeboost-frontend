@@ -57,6 +57,10 @@ export const UserProfile: React.FC = () => {
     }
   };
 
+  const onDeleteAccount = () => {
+    // TODO:
+  };
+
   const handleAddComp = (name: string) => {
     if (user) {
       setUser({
@@ -113,8 +117,13 @@ export const UserProfile: React.FC = () => {
               {user?.email}
             </div>
             <div className="px-4 pb-4 text-xl">My Resumes:</div>
-            <PDFModal />
-            <form className="p-4 flex justify-end">
+            {user?.resumes.map((item, index) => (
+              <PDFModal
+                resume={item}
+                name={"testPDF".concat(index.toString())}
+              />
+            ))}
+            <form className="p-4 flex justif-end">
               {/* TODO: Upload resume functionality */}
               <input type="file" onChange={onFileChange} />
               <button
@@ -127,6 +136,13 @@ export const UserProfile: React.FC = () => {
               </button>
             </form>
           </div>
+          <button
+            type="button"
+            className="mt-4 px-8 p-4 border rounded-full bg-red-600 text-white font-bold text-sm"
+            onClick={onDeleteAccount}
+          >
+            Delete Account
+          </button>
         </div>
 
         {/* Right side of page */}

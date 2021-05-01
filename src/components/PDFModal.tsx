@@ -1,7 +1,13 @@
 import React from "react";
 import PDFView from "./PDFview";
+import { Resume } from "../interfaces/Resume";
 
-export default function Modal() {
+interface Props {
+  resume: Resume;
+  name: string;
+}
+
+const Modal: React.FC<Props> = ({ resume, name }) => {
   const [showModal, setShowModal] = React.useState(false);
   return (
     <div className="px-4 pb-2">
@@ -10,7 +16,7 @@ export default function Modal() {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        placeholderResumeName.pdf
+        {name}
       </button>
       {showModal ? (
         <>
@@ -20,14 +26,13 @@ export default function Modal() {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/* header */}
                 <div className="flex items-start justify-between py-2 pl-4 border-b border-solid border-blueGray-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">
-                    placeholderResumeName.pdf
-                  </h3>
+                  <h3 className="text-3xl font-semibold">{name}</h3>
                 </div>
                 {/* body */}
                 <div className="relative flex-auto">
                   {/* TODO: Replace with actual resume */}
-                  <PDFView resumeLink="04e6b936-d6a6-433a-9400-307d5ee49fd3.pdf" />
+                  {/* <PDFView resumeLink="04e6b936-d6a6-433a-9400-307d5ee49fd3.pdf" /> */}
+                  <PDFView resumeLink={resume.link} />
                 </div>
                 {/* footer */}
                 <div className="flex items-center justify-between p-2 border-t border-solid border-blueGray-200 rounded-b">
@@ -54,4 +59,6 @@ export default function Modal() {
       ) : null}
     </div>
   );
-}
+};
+
+export default Modal;

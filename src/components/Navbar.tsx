@@ -31,7 +31,8 @@ const Navbar: React.FC = () => {
                 <Link
                   id="#dashboard-navbar"
                   to="/dashboard"
-                  className="bg-purple-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-300 hover:bg-purple-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  // className="bg-purple-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Dashboard
                 </Link>

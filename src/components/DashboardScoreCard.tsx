@@ -16,7 +16,7 @@ export const DashboardScoreCard: React.FC<Props> = ({ metric, score }) => {
           {metric}
         </div>
         <div className="flex justify-center font-bold h-4/6 text-5xl ">
-          {score}
+          {score.toPrecision(2)}
         </div>
       </div>
     </div>
