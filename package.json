@@ -33,6 +33,7 @@
   },
   "scripts": {
     "start": "craco start",
+    "start:instrument": "craco -r @cypress/instrument-cra start",
     "build": "craco build",
     "test": "craco test",
     "test:cov": "craco test --coverage --watchAll=false",
@@ -41,7 +42,9 @@
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "prepare": "husky install",
-    "postinstall": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks"
+    "postinstall": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "eslintConfig": {
     "extends": [
@@ -62,14 +65,19 @@
     ]
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.9.5",
+    "@cypress/instrument-cra": "^1.4.0",
     "@tailwindcss/postcss7-compat": "^2.0.4",
     "@testing-library/react": "^11.2.5",
+    "@types/cypress": "^1.1.3",
+    "@types/mongodb": "^3.6.12",
     "@types/rc-slider": "^8.6.6",
     "@types/react-pdf": "^5.0.2",
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
     "autoprefixer": "^9.8.6",
+    "cypress": "^7.2.0",
     "eslint": "^7.22.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^12.3.1",
@@ -82,6 +90,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^5.2.0",
     "jest-dom": "^4.0.0",
+    "mongodb": "^3.6.6",
     "postcss": "^7.0.35",
     "prettier": "^2.2.1",
     "react-test-renderer": "^17.0.2",

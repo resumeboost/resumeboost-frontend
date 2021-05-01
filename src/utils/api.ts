@@ -1,25 +1,26 @@
-import { UpdatePreferencesDto } from "../interfaces/UpdatePreferencesDto";
 import { Credentials } from "../interfaces/Credentials";
+import { PostReviewDto } from "../interfaces/PostReviewDto";
 import { Review } from "../interfaces/Review";
+import { Reviewee } from "../interfaces/Reviewee";
+import { UpdatePreferencesDto } from "../interfaces/UpdatePreferencesDto";
 import User from "../interfaces/User";
 import axios from "axios";
-import { Reviewee } from "../interfaces/Reviewee";
-import { PostReviewDto } from "../interfaces/PostReviewDto";
 
-const testUser = {
+const testUser: User = {
   _id: "123",
   email: "email@gmail.com",
   points: 10,
   targetCompanies: [],
+  targetPositions: [],
   resumes: [],
 };
 
-const URL = "http://localhost:8080";
+const URL = "http://localhost:8000";
 
 const getLoggedInUser = async (): Promise<User | undefined> => {
   // return undefined;
 
-  // return testUser;
+  return testUser;
   return axios
     .get(`${URL}/user/profile`, { withCredentials: true })
     .then((res) => res.data);
@@ -78,7 +79,10 @@ const getResumeFile = async (filename: string): Promise<Uint8Array> => {
     .then((res) => res.data.data);
 };
 
-const uploadResume = async (userId: string, formData: FormData) => {
+const uploadResume = async (
+  userId: string,
+  formData: FormData
+): Promise<void> => {
   await axios.post(`${URL}/user/${userId}/resume`, formData, {
     withCredentials: true,
   });
@@ -87,7 +91,7 @@ const uploadResume = async (userId: string, formData: FormData) => {
 const updateUserPreferences = async (
   userId: string,
   preferences: UpdatePreferencesDto
-) => {
+): Promise<void> => {
   await axios.post(`${URL}/user/update/${userId}`, preferences, {
     withCredentials: true,
   });
@@ -101,7 +105,7 @@ const getNextUserToReview = async (): Promise<Reviewee> => {
     .then((res) => res.data);
 };
 
-const postReview = async (reviewData: PostReviewDto) => {
+const postReview = async (reviewData: PostReviewDto): Promise<void> => {
   await axios.post(`${URL}/review/postReview`, reviewData, {
     withCredentials: true,
   });

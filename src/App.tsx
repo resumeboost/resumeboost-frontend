@@ -2,7 +2,6 @@ import "./App.css";
 
 import React, { useEffect, useRef, useState } from "react";
 import { Redirect, Route, BrowserRouter as Router } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
 
 import Dashboard from "./pages/Dashboard";
 import Feedback from "./components/Feedback";
@@ -14,6 +13,7 @@ import LoggedOutRoute from "./components/LoggedOutRoute";
 import Navbar from "./components/Navbar";
 import { Review } from "./interfaces/Review";
 import SignUp from "./pages/SignUp";
+import { Toaster } from "react-hot-toast";
 import User from "./interfaces/User";
 import UserContext from "./context/UserContext";
 import { UserProfile } from "./pages/UserProfile";
@@ -25,7 +25,10 @@ const App: React.FC = () => {
   // const [resumeFile, setResumeFile] = useState<string>();
 
   useEffect(() => {
-    api.getLoggedInUser().then((currentUser) => setUser(currentUser));
+    api
+      .getLoggedInUser()
+      .then((currentUser) => setUser(currentUser))
+      .catch((err) => console.log("User not logged in"));
   }, []);
 
   return (
