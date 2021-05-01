@@ -18,6 +18,7 @@ import User from "./interfaces/User";
 import UserContext from "./context/UserContext";
 import { UserProfile } from "./pages/UserProfile";
 import api from "./utils/api";
+import { ABTesting } from "./pages/ABTesting";
 
 const App: React.FC = () => {
   const [user, setUser] = useState<User>();
@@ -93,6 +94,16 @@ const App: React.FC = () => {
           render={() => (
             <LoggedInRoute>
               <UserProfile />
+            </LoggedInRoute>
+          )}
+        />
+
+        {/* AB Testing */}
+        <Route
+          path="/abtesting"
+          render={() => (
+            <LoggedInRoute>
+              <ABTesting />
             </LoggedInRoute>
           )}
         />
